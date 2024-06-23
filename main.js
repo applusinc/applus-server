@@ -1,9 +1,18 @@
+const dotenv = require('dotenv');
+dotenv.config();
+//require('dotenv').config({ path: '/full/custom/path/to/your/env' })
+const serverRouter = require("./routes/server/server");
 const express = require('express');
 const app = express();
-const port = 3000;
+console.log(process.env.PORT)
 
-app.get('/', (req, res) => res.status(200).end('Hello World!'));
-app.get('/ping', (req, res) => {
-  res.status(200).end('ping');
-})
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+const port = process.env.PORT;
+
+
+app.use("/", serverRouter);
+
+
+app.listen(port, () => console.log(`Server listening on ${port}!`));

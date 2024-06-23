@@ -10,7 +10,7 @@ serverRouter.get('/ping', (req, res) => {
 });
 
 serverRouter.get('/shutdown/:token', (req, res) => {
-  if(req.params.token == process.env.ADMIN_SECRET){
+  if(req.params.token == "admin"){
     process.exit(0);
   }else {
     res.status(401).end('Not Authorized');

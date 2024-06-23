@@ -4,12 +4,11 @@ dotenv.config();
 const serverRouter = require("./routes/server/server");
 const express = require('express');
 const app = express();
-console.log(process.env.PORT)
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const port = process.env.PORT;
+const port = 3000;
 
 
 app.use("/", serverRouter);

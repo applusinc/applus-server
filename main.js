@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const port = 3000;
-app.use('/server', (req, res) => {
+app.use('/kumes', (req, res) => {
     proxy.web(req, res, { target: 'http://192.168.1.30:80' });
 });
 

@@ -10,7 +10,11 @@ app.use(express.json());
 
 const port = 3000;
 app.use('/kumes', (req, res) => {
-    proxy.web(req, res, { target: 'http://192.168.1.30:80' });
+    try{
+        proxy.web(req, res, { target: 'http://192.168.1.30:80' });
+    }catch(e){
+        res.status(500).end("Port unavailable");
+    }
 });
 
 app.use('/', (req, res) => {

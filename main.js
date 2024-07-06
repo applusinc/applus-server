@@ -10,15 +10,13 @@ app.use(express.json());
 
 const port = 3000;
 app.use('/kumes', (req, res) => {
-    try{
-        proxy.web(req, res, { target: 'http://192.168.1.30:80' });
-    }catch(e){
-        res.status(500).end("Port unavailable");
-    }
+   
+    proxy.web(req, res, { target: 'http://192.168.1.30:80' }, function(e) {res.status(500).end("port unavailable: Lütfen yönetici ile iletişime geçin.")});
+    
 });
 
 app.use('/', (req, res) => {
-    proxy.web(req, res, { target: 'http://192.168.1.31:4000' });
+    proxy.web(req, res, { target: 'http://192.168.1.31:4000' }, function(e) {res.status(500).end("port unavailable: Lütfen yönetici ile iletişime geçin.")});
 });
 
 app.use("/", serverRouter);

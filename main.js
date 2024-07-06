@@ -13,6 +13,10 @@ app.use('/kumes', (req, res) => {
     proxy.web(req, res, { target: 'http://192.168.1.30:80' });
 });
 
+app.use('/panel', (req, res) => {
+    proxy.web(req, res, { target: 'http://192.168.1.31::4000' });
+});
+
 app.use("/", serverRouter);
 
 

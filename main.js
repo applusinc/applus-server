@@ -1,7 +1,7 @@
 const serverRouter = require("./routes/server/server");
 const httpProxy = require('http-proxy');
 const express = require('express');
-const basicAuth = require('basic-auth');
+
 const app = express();
 const proxy = httpProxy.createProxyServer({});
 

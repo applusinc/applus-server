@@ -1,5 +1,5 @@
 const express = require('express');
-
+const basicAuth = require('basic-auth');
 
 const auth = function (req, res, next) {
     const user = basicAuth(req);

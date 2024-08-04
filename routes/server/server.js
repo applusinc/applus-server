@@ -1,8 +1,8 @@
 const express = require('express');
 const auth = require('../../admin_auth');
 
-var gWifi = "";
-var gbattery = "";
+var gTime = "";
+var gBattery = "";
 var gRam = "";
 var gUptime = "";
 var gTemp = "";
@@ -18,15 +18,16 @@ serverRouter.get('/ping', (req, res) => {
 
 serverRouter.post('/info/:token', (req, res) => {
   if(req.params.token == "admin"){
-    const {wifi, battery, ram, uptime, temp} = req.body;
-    if(!wifi || !battery || !ram || !uptime || !temp){
+    const {time, battery, ram, uptime, temp} = req.body;
+    if(!time || !battery || !ram || !uptime || !temp){
       res.status(400).json({error: 'Missing required fields'});
     }
-    gWifi = wifi;
+    gTime = time;
     gBattery = battery;
     gRam = ram;
     gUptime = uptime;
     gTemp = temp;
+    res.status(200).end('Info saved');
   }else {
     res.status(401).end('Not Authorized');
   }
@@ -34,7 +35,7 @@ serverRouter.post('/info/:token', (req, res) => {
 
 serverRouter.get('/info', auth, (req, res) => {
   res.json({
-    wifi: gWifi,
+    time: gTime,
     battery: gBattery,
     ram: gRam,
     uptime: gUptime,
